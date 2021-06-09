@@ -1,0 +1,11 @@
+button{
+    background-color: chartreuse;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    margin: 2px 2px !important;
+}
+
+.disabled{
+    background-color: cornsilk;
+}
