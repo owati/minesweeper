@@ -17,37 +17,34 @@ class Gamearea extends Component {
     constructor() {
         super()
         this.state = {
-            level: 'easy',
-            numOfBoxes: 7,
-            numOfError: 10,
-            minesArray: [],
-            start: false,
-            running: false,
-            openedButtons: ['po'],
-            time: [0, 0]
+            level: 'easy',          // determines the game hardness level
+            numOfBoxes: 7,          // show the length of the grid to be generated
+            numOfError: 10,         // depicts the number of mines to be generated in the grid
+            minesArray: [],         // stores the mines index numbers
+            start: false,           // determins whether the is rendered with the time function
+            running: false,         // remains true while a game is being played
+            openedButtons: [],      // stores the number of index numbers of already opened buttons
         }
 
     }
 
-    buttonClick = (event) => {
-        let button = event.target
-        console.log(this.state.openedButtons.length)
+    buttonClick = (event) => {  // handles the event when a button is clicked
+        let button = event.target // the object of the button being clicked
 
-        if (this.state.running) {
-            if (this.state.minesArray.includes(button.id)) {
+        if (this.state.running) { // do this if the a game is already being played
+            if (this.state.minesArray.includes(button.id)) { // if the button being clicked is a mine
                 alert('you loose')
-                this.setState({
+                this.setState({  // reset all original state
                     running: false,
-                    start: false,
-                    openedButtons: ['po'],
-                    minesArray: []
+                    openedButtons: [],
+                    minesArray: [], 
+                    start: false
                 })
 
-            } else {
+            } else {    // if the button is not a mine
                 let num = (this.state.numOfBoxes ** 2) - this.state.numOfError
-                console.log(num)
-                if (!(this.state.openedButtons.length === num)) {
-                    this.setState(state => {
+                if (!((this.state.openedButtons.length + 1) === num)) { // check if all non mine button has been opened, *if no
+                    this.setState(state => {    // opened the number of opened buttons
                         let openedButtons
                         if (countAround(button.id, this.state.numOfBoxes, this.state.minesArray) === 0) {
                             openedButtons = state.openedButtons.concat(zeroButtonArray(button.id, this.state.numOfBoxes, this.state.minesArray).concat(button.id))
@@ -56,12 +53,12 @@ class Gamearea extends Component {
                             openedButtons = state.openedButtons.concat(button.id)
                         }
 
-                        openedButtons = remove(openedButtons)
+                        openedButtons = remove(openedButtons) // remove any repeated button id
 
                         return { openedButtons }
                     })
-                } else {
-                    this.setState(state=>{
+                } else {    // *if yes, declare the person a winner and reset all date ***********************************
+                    this.setState(state => {
                         const openedButtons = state.openedButtons.concat(button.id)
                         const running = false
                         const start = false
@@ -73,29 +70,31 @@ class Gamearea extends Component {
 
             }
 
-        } else {
+        } else {    // if the game is yet to begin
 
             this.setState(state => {
-                const minesArray = generateMines(state.numOfError, state.numOfBoxes, button.id)
-                const running = true
-                const openedButtons = remove(state.openedButtons.concat(button.id,splitArray(button.id,this.state.numOfBoxes)))
+                const minesArray = generateMines(state.numOfError, state.numOfBoxes, button.id) // generate mines
+                const running = true    // declare the game to begin
+                const start = false
+                const openedButtons = remove(state.openedButtons.concat(button.id, splitArray(button.id, this.state.numOfBoxes))) // update the opened button array
 
                 return {
                     running,
                     minesArray,
-                    openedButtons
+                    openedButtons,
+                    start
                 }
             })
         }
     }
 
 
-    setLevel = (event) => {
-        if (this.state.running) {
+    setLevel = (event) => { // sets the hardness level of the game
+        if (this.state.running) { // can not set it while a game is going on
             alert('a game is going on')
             event.target.value = this.state.level
         }
-        else {
+        else { // else, set the levels and the update the num of boxes and number of mines
             let levels = event.target.value
             this.setState({
                 level: levels,
@@ -113,17 +112,17 @@ class Gamearea extends Component {
             return (
                 <div>
                     <Levelset change={this.setLevel} />
-                    
+
                     <div>
                         <Timer running={this.state.running} />
 
-                        <br/>
+                        <br />
                         <Buttonarea
                             limit={this.state.numOfBoxes}
                             butClick={this.buttonClick}
                             opened={this.state.openedButtons}
                             mines={this.state.minesArray}
-                            running= {this.state.running}
+                            running={this.state.running}
                             start={this.state.start}
                         />
 
@@ -135,10 +134,10 @@ class Gamearea extends Component {
                 <div>
                     <Levelset change={this.setLevel} />
                     <div>
-                        <Timer running={this.state.running}/>
+                        <Timer running={this.state.running} />
 
 
-                        <br/>
+                        <br />
                         <Buttonarea
                             limit={this.state.numOfBoxes}
                             butClick={this.buttonClick}

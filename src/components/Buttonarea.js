@@ -7,14 +7,14 @@ import '../css/Buttonarea.css'
 var timeCounter = 0
 class Buttonarea extends Component {
     constructor(props) {
+        console.log('pol')
         super(props)
         this.state = {
-            begin: !this.props.running,
             timeCount: 0,
         }
     }
     componentDidMount(){
-        if(this.state.begin || this.props.start){
+        if(!this.props.running || this.props.start){
             console.log('yesah')
             this.timer = setInterval(() => {
                 timeCounter++
@@ -35,8 +35,8 @@ class Buttonarea extends Component {
     }
 
     render() {
-        console.log(this.props.limit)
-        if (this.state.begin) {
+        console.log(this.props.running, this.props.start)
+        if (!this.props.running || this.props.start) {
             let count = this.props.start ? this.props.limit:this.state.timeCount
             
             let list = []
@@ -56,12 +56,12 @@ class Buttonarea extends Component {
                     }
 
                 }
-                list.push(<div>{list2}</div>)
+                list.push(<div className="row align-items-center">{list2}</div>)
             }
 
             return (
                 <div className="container h-100 bewocBody">
-                    <div className="h-100 justify-content-center div-wrapper align-items-center game-area">
+                    <div className="game-area">
                         { list }
                     </div>
                 </div>
@@ -69,6 +69,7 @@ class Buttonarea extends Component {
         
 
         } else {
+            console.log('yeah')
             let list = []
             for (let i = 0; i < this.props.limit; i++) {
                 let list2 = []
@@ -86,12 +87,12 @@ class Buttonarea extends Component {
                     }
 
                 }
-                list.push(<div id="i" className="row" >{list2}</div>)
+                list.push(<div id="i" className="row align-items-center">{list2}</div>)
             }
 
             return (
                 <div className="container h-100 bewocBody">
-                    <div className="h-100 justify-content-center div-wrapper align-items-center game-area">
+                    <div className="game-area">
                         {list}
                     </div>
                 </div>
