@@ -1,14 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Levelset from './Levelset';
 import '../css/Gamearea.css';
 import { generateMines, countAround, zeroButtonArray, splitArray, remove } from '../functions/generatemines';
-import Timer from './Timer';
 import Buttonarea from './Buttonarea';
 
 const LevelMap = {
     easy: [7, 10],
     medium: [10, 8],
     hard: [16, 20]
+}
+
+var timerFunc, timeCount = 0
+
+function Timer(){
+    let [time, setTime] = useState(['00','00'])
+
+    useEffect(()=>{
+        timerFunc = setInterval(() => {
+            let min = Math.floor(timeCount / 60)
+            let sec = timeCount % 60
+
+            let minWord = min < 10 ? `0${min}` : `${min}`
+            let secWord = sec < 10 ? `0${sec}` : `${sec}`
+
+            setTime([minWord, secWord])
+            timeCount++
+        }, 1000)
+
+    }, [])
+
+
+    return(
+        <h1>{time[0]}:{time[1]}</h1>
+    )
 }
 
 
@@ -21,7 +45,6 @@ class Gamearea extends Component {
             numOfBoxes: 7,          // show the length of the grid to be generated
             numOfError: 10,         // depicts the number of mines to be generated in the grid
             minesArray: [],         // stores the mines index numbers
-            start: false,           // determins whether the is rendered with the time function
             running: false,         // remains true while a game is being played
             openedButtons: [],      // stores the number of index numbers of already opened buttons
         }
@@ -33,13 +56,13 @@ class Gamearea extends Component {
 
         if (this.state.running) { // do this if the a game is already being played
             if (this.state.minesArray.includes(button.id)) { // if the button being clicked is a mine
-                alert('you loose')
+                alert(`you lost after ${timeCount} seconds`)
                 this.setState({  // reset all original state
                     running: false,
                     openedButtons: [],
                     minesArray: [], 
-                    start: false
                 })
+                clearInterval(timerFunc)
 
             } else {    // if the button is not a mine
                 let num = (this.state.numOfBoxes ** 2) - this.state.numOfError
@@ -61,9 +84,8 @@ class Gamearea extends Component {
                     this.setState(state => {
                         const openedButtons = state.openedButtons.concat(button.id)
                         const running = false
-                        const start = false
 
-                        return { openedButtons, running, start }
+                        return { openedButtons, running}
                     })
                     alert('you win')
                 }
@@ -75,14 +97,12 @@ class Gamearea extends Component {
             this.setState(state => {
                 const minesArray = generateMines(state.numOfError, state.numOfBoxes, button.id) // generate mines
                 const running = true    // declare the game to begin
-                const start = false
                 const openedButtons = remove(state.openedButtons.concat(button.id, splitArray(button.id, this.state.numOfBoxes))) // update the opened button array
 
                 return {
                     running,
                     minesArray,
                     openedButtons,
-                    start
                 }
             })
         }
@@ -100,7 +120,6 @@ class Gamearea extends Component {
                 level: levels,
                 numOfBoxes: LevelMap[levels][0],
                 numOfError: LevelMap[levels][1],
-                start: true
             })
 
         }
@@ -114,7 +133,7 @@ class Gamearea extends Component {
                     <Levelset change={this.setLevel} />
 
                     <div>
-                        <Timer running={this.state.running} />
+                        <Timer/>
 
                         <br />
                         <Buttonarea
@@ -123,7 +142,6 @@ class Gamearea extends Component {
                             opened={this.state.openedButtons}
                             mines={this.state.minesArray}
                             running={this.state.running}
-                            start={this.state.start}
                         />
 
                     </div>
@@ -134,7 +152,7 @@ class Gamearea extends Component {
                 <div>
                     <Levelset change={this.setLevel} />
                     <div>
-                        <Timer running={this.state.running} />
+                        <h1>00:00</h1>
 
 
                         <br />
@@ -144,7 +162,6 @@ class Gamearea extends Component {
                             opened={this.state.openedButtons}
                             mines={this.state.minesArray}
                             running={this.state.running}
-                            start={this.state.start}
                         />
 
                     </div>
