@@ -1,9 +1,20 @@
 import React from 'react';
 import '../css/Navbar.css'
 
-const Navbar = () => {
-    return(
-        <nav className="tc navbar bg-secondary nav"><h1>the Minesweeper game 2.0</h1></nav>
+const Navbar = (props) => {
+    return (
+
+        <nav className="navbar navbar-light bg-secondary">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="#">Minesweeper</a>
+
+                <div className="d-flex">
+                    <button className="btn btn-outline-danger" onClick={props.open}>&#9776;</button>
+                
+                </div>
+            </div>
+        </nav>
+
     )
 }
 

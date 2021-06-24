@@ -4,10 +4,10 @@ import '../css/Button.css';
 
 const Button = (props) => { 
     if(props.disabled){
-        return <button className="grow disabled" id={props.id}>{props.value === 0 ? '':props.value}</button>
+        return <button className="grow disabled gamebutton" id={props.id}>{props.value === 0 ? '':props.value}</button>
     }
     else{
-        return <button className="grow" id={props.id} onClick={props.func}></button>
+        return <button className="grow gamebutton" id={props.id} onClick={props.func}></button>
     }
 }
 
