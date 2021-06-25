@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import Howto from './components/Howto'
 import Gamearea from './components/Gamearea';
 import Sidebar from './components/Sidebar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -26,6 +27,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact component={() => <Home />} />
                         <Route path="/game" exact component={() => <Gamearea/>} />
+                        <Route path="/how" exact component={() => <Howto/>}/>
                     </Switch>
 
                 </Router>
