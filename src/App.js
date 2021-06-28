@@ -5,6 +5,7 @@ import Howto from './components/Howto'
 import Gamearea from './components/Gamearea';
 import Sidebar from './components/Sidebar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Footer from './components/Footer';
 
 
 
@@ -29,7 +30,7 @@ class App extends Component {
                         <Route path="/game" exact component={() => <Gamearea/>} />
                         <Route path="/how" exact component={() => <Howto/>}/>
                     </Switch>
-
+                    <Footer/>
                 </Router>
             </div>
 

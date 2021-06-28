@@ -3,3 +3,13 @@
     top: 100px;
     left: auto;
 }
+
+.status{
+    padding: 10px 50px;
+}
+
+.timer{
+    border: solid 5px blue;
+    border-radius: 10px;
+    height: 70px;
+}

@@ -24,13 +24,14 @@ class Buttonarea extends Component {
                         func={this.props.butClick}
                         disabled={true}
                         value={countAround(id, this.props.limit, this.props.mines)}
+                        level={this.props.level}
                     />)
                 } else {
-                    list2.push(<Button key={id} id={id} func={this.props.butClick} disabled={false} />)
+                    list2.push(<Button key={id} id={id} func={this.props.butClick} disabled={false} level={this.props.level}/>)
                 }
 
             }
-            list.push(<div id="i" className="row align-items-center">{list2}</div>)
+            list.push(<div id="i" className="d-flex row justify-content-center">{list2}</div>)
         }
 
         return (

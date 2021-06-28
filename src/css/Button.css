@@ -1,11 +1,31 @@
 .gamebutton{
     background-color: chartreuse;
-    height: 50px;
-    width: 50px;
-    border-radius: 10px;
     margin: 2px 2px !important;
+    font-family: 'Comic sans ms';
 }
 
 .disabled{
     background-color: cornsilk;
+}
+
+.easy{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.medium{
+    height: 35px;
+    width: 35px;
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+.hard{
+    height: 25px;
+    width: 25px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: bold;
 }

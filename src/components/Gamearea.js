@@ -7,15 +7,15 @@ import Buttonarea from './Buttonarea';
 const LevelMap = {
     easy: [7, 10],
     medium: [10, 8],
-    hard: [16, 20]
+    hard: [14, 20]
 }
 
 var timerFunc, timeCount = 0
 
-function Timer(){
-    let [time, setTime] = useState(['00','00'])
+function Timer() {
+    let [time, setTime] = useState(['00', '00'])
 
-    useEffect(()=>{
+    useEffect(() => {
         timerFunc = setInterval(() => {
             let min = Math.floor(timeCount / 60)
             let sec = timeCount % 60
@@ -30,7 +30,7 @@ function Timer(){
     }, [])
 
 
-    return(
+    return (
         <h1>{time[0]}:{time[1]}</h1>
     )
 }
@@ -60,9 +60,10 @@ class Gamearea extends Component {
                 this.setState({  // reset all original state
                     running: false,
                     openedButtons: [],
-                    minesArray: [], 
+                    minesArray: [],
                 })
                 clearInterval(timerFunc)
+                timeCount = 0
 
             } else {    // if the button is not a mine
                 let num = (this.state.numOfBoxes ** 2) - this.state.numOfError
@@ -81,13 +82,14 @@ class Gamearea extends Component {
                         return { openedButtons }
                     })
                 } else {    // *if yes, declare the person a winner and reset all date ***********************************
-                    this.setState(state => {
-                        const openedButtons = state.openedButtons.concat(button.id)
-                        const running = false
-
-                        return { openedButtons, running}
+                    alert(`you win !!  after ${timeCount} seconds`)
+                    this.setState({  // reset all original state
+                        running: false,
+                        openedButtons: [],
+                        minesArray: [],
                     })
-                    alert('you win')
+                    clearInterval(timerFunc)
+                    timeCount = 0
                 }
 
             }
@@ -130,14 +132,17 @@ class Gamearea extends Component {
         if (this.state.running) {
             return (
                 <div>
-                    <Levelset change={this.setLevel} />
+                    <div className="d-flex justify-content-between align-items-center status">
+                        <Levelset change={this.setLevel} />
+                        <div><h4>{this.state.openedButtons.length}</h4></div>
+                        <div className="timer d-flex justify-content-between align-items-center"><Timer /></div>
+                    </div>
+
 
                     <div>
-                        <Timer/>
-
-                        <br />
                         <Buttonarea
                             limit={this.state.numOfBoxes}
+                            level={this.state.level}
                             butClick={this.buttonClick}
                             opened={this.state.openedButtons}
                             mines={this.state.minesArray}
@@ -150,14 +155,16 @@ class Gamearea extends Component {
         } else {
             return (
                 <div>
-                    <Levelset change={this.setLevel} />
+                    <div className="d-flex justify-content-between align-items-center status">
+                        <Levelset change={this.setLevel} />
+                        <div className="timer d-flex justify-content-between align-items-center"><h1>00:00</h1></div>
+                        
+                    </div>
+
                     <div>
-                        <h1>00:00</h1>
-
-
-                        <br />
                         <Buttonarea
                             limit={this.state.numOfBoxes}
+                            level={this.state.level}
                             butClick={this.buttonClick}
                             opened={this.state.openedButtons}
                             mines={this.state.minesArray}
