@@ -3,6 +3,7 @@ import Levelset from './Levelset';
 import '../css/Gamearea.css';
 import { generateMines, countAround, zeroButtonArray, splitArray, remove } from '../functions/generatemines';
 import Buttonarea from './Buttonarea';
+import Footer from './Footer';
 
 const LevelMap = {
     easy: [7, 10],
@@ -128,6 +129,25 @@ class Gamearea extends Component {
 
     }
 
+    bottomNavFunctions = {
+        home: ()=>{
+            if(this.state.running){
+                alert('sorry a game is running')
+            } else {
+                window.location.replace('/')
+            }
+        },
+        newgame: ()=>{
+            this.setState({  // reset all original state
+                running: false,
+                openedButtons: [],
+                minesArray: [],
+            })
+            clearInterval(timerFunc)
+            timeCount = 0
+        }
+    }
+
     render() {
         if (this.state.running) {
             return (
@@ -150,6 +170,7 @@ class Gamearea extends Component {
                         />
 
                     </div>
+                    <Footer game={true} func={this.bottomNavFunctions}/>
                 </div>
             )
         } else {
@@ -172,6 +193,7 @@ class Gamearea extends Component {
                         />
 
                     </div>
+                    <Footer game={true} func={this.bottomNavFunctions}/>
                 </div>
             )
         }

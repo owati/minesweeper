@@ -1,0 +1,11 @@
+.home {
+    border: solid black;
+    border-radius: 10px;
+    margin: 160px 50px;
+    padding: 50px 0px;
+}
+
+.mybtn {
+    border: solid black;
+    margin-top: 10px;
+}

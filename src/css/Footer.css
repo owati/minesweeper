@@ -1,0 +1,31 @@
+footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin-top: 1px;
+    background-color: #6c757d;
+    color: black;
+    font-family: 'Comic sans ms';
+    font-weight: bold;
+}
+
+.footer-text{
+    text-align: center;
+    padding-top: 10px;
+    
+}
+.footer-text2{
+    
+    text-align: center;
+    padding-top: 10px;
+    
+}
+
+.bottom-nav{
+    display: none;
+}
+
+.social{
+    padding-bottom: 10px;
+    width: 150px;
+}

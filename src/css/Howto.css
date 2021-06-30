@@ -1,0 +1,17 @@
+.howto{
+    display: flex;
+    width: 300px;
+    height: 300px;
+    border: solid black;
+    text-align: center;
+    align-items: center;
+}
+
+.text {
+    text-align: center;
+}
+
+.title{
+    position: relative;
+    top: 30px;
+}

@@ -1,0 +1,13 @@
+select{
+    height: 50px;
+    border: solid black 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+option{
+    background-color: white;
+    font-weight: bold;
+}
+

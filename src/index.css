@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(to right, rgba(11, 104, 48, 0.201), rgba(11, 104, 48, 1));
+  background-color: cadetblue;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -14,20 +14,14 @@ code {
 }
 
 @media screen and (max-width: 480px) {
-  body{
-      background-color: blue;
-  }
   .footer-text{
     display: none;
   }
-
-  
-}
-
-@media screen and (min-width: 480px) 
-{
   .bottom-nav{
-    display: none;
+    display: flex !important;
+    height: 70px;
+    background-color: #6c757d;
+    padding-top: 10px;
+
   }
-  
 }
