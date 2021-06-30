@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/minesweeper/static/css/main.1a855a23.chunk.css",
+    "main.js": "/minesweeper/static/js/main.b4acb730.chunk.js",
+    "main.js.map": "/minesweeper/static/js/main.b4acb730.chunk.js.map",
+    "runtime-main.js": "/minesweeper/static/js/runtime-main.38146a67.js",
+    "runtime-main.js.map": "/minesweeper/static/js/runtime-main.38146a67.js.map",
+    "static/css/2.c1f4f5f4.chunk.css": "/minesweeper/static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.cbc7aafc.chunk.js": "/minesweeper/static/js/2.cbc7aafc.chunk.js",
+    "static/js/2.cbc7aafc.chunk.js.map": "/minesweeper/static/js/2.cbc7aafc.chunk.js.map",
+    "static/js/3.6e383c8b.chunk.js": "/minesweeper/static/js/3.6e383c8b.chunk.js",
+    "static/js/3.6e383c8b.chunk.js.map": "/minesweeper/static/js/3.6e383c8b.chunk.js.map",
+    "index.html": "/minesweeper/index.html",
+    "static/css/2.c1f4f5f4.chunk.css.map": "/minesweeper/static/css/2.c1f4f5f4.chunk.css.map",
+    "static/css/main.1a855a23.chunk.css.map": "/minesweeper/static/css/main.1a855a23.chunk.css.map",
+    "static/js/2.cbc7aafc.chunk.js.LICENSE.txt": "/minesweeper/static/js/2.cbc7aafc.chunk.js.LICENSE.txt",
+    "static/media/board.db64049d.png": "/minesweeper/static/media/board.db64049d.png",
+    "static/media/github.44eee0c4.png": "/minesweeper/static/media/github.44eee0c4.png",
+    "static/media/twitter.8e65601e.png": "/minesweeper/static/media/twitter.8e65601e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.38146a67.js",
+    "static/css/2.c1f4f5f4.chunk.css",
+    "static/js/2.cbc7aafc.chunk.js",
+    "static/css/main.1a855a23.chunk.css",
+    "static/js/main.b4acb730.chunk.js"
+  ]
+}
