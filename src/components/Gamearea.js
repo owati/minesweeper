@@ -4,6 +4,10 @@ import '../css/Gamearea.css';
 import { generateMines, countAround, zeroButtonArray, splitArray, remove } from '../functions/generatemines';
 import Buttonarea from './Buttonarea';
 import Footer from './Footer';
+import home from '../assets/home.png';
+import board from '../assets/board.png';
+import newgame from '../assets/newgame.png';
+import save from '../assets/save.png';
 
 const LevelMap = {
     easy: [7, 10],
@@ -11,6 +15,7 @@ const LevelMap = {
     hard: [14, 20]
 }
 
+let side_bar_open = false
 var timerFunc, timeCount = 0
 
 function Timer() {
@@ -129,15 +134,29 @@ class Gamearea extends Component {
 
     }
 
+    sideButFunc = (event) => {
+        let but = event.target
+        let side_bar = document.getElementById('side-bar-id')
+        if(side_bar_open){
+            side_bar.style.height = '70px'
+            side_bar_open = false
+            but.style.backgroundColor = '#6c757d'
+        } else {
+            side_bar.style.height = '350px'
+            side_bar_open = true
+            but.style.backgroundColor = '#4e5459'
+        }
+    }
+
     bottomNavFunctions = {
-        home: ()=>{
-            if(this.state.running){
+        home: () => {
+            if (this.state.running) {
                 alert('sorry a game is running')
             } else {
                 window.location.replace('/')
             }
         },
-        newgame: ()=>{
+        newgame: () => {
             this.setState({  // reset all original state
                 running: false,
                 openedButtons: [],
@@ -158,6 +177,19 @@ class Gamearea extends Component {
                         <div className="timer d-flex justify-content-between align-items-center"><Timer /></div>
                     </div>
 
+ 
+                    <div className="side-bar" id='side-bar-id'>
+    
+
+
+                        <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
+                        <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
+                        
+                    </div>
+
 
                     <div>
                         <Buttonarea
@@ -170,7 +202,7 @@ class Gamearea extends Component {
                         />
 
                     </div>
-                    <Footer game={true} func={this.bottomNavFunctions}/>
+                    <Footer game={true} func={this.bottomNavFunctions} />
                 </div>
             )
         } else {
@@ -179,8 +211,22 @@ class Gamearea extends Component {
                     <div className="d-flex justify-content-between align-items-center status">
                         <Levelset change={this.setLevel} />
                         <div className="timer d-flex justify-content-between align-items-center"><h1>00:00</h1></div>
+
+                    </div>
+
+ 
+                    <div className="side-bar" id='side-bar-id'>
+    
+
+
+                        <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
+                        <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
                         
                     </div>
+
 
                     <div>
                         <Buttonarea
@@ -193,7 +239,7 @@ class Gamearea extends Component {
                         />
 
                     </div>
-                    <Footer game={true} func={this.bottomNavFunctions}/>
+                    <Footer game={true} func={this.bottomNavFunctions} />
                 </div>
             )
         }

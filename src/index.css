@@ -13,15 +13,43 @@ code {
     monospace;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 580px) {
   .footer-text{
     display: none;
   }
   .bottom-nav{
     display: flex !important;
+    justify-content: space-around;
     height: 70px;
     background-color: #6c757d;
     padding-top: 10px;
 
   }
+  .side-bar{
+    display: none !important;
+  }
+
+  .howto{
+    height: 350px !important;
+    font-size: 15px !important;
+    margin-top: -50px !important;
+  }
+
+  .easy{
+    height: 45px !important;
+    width: 45px !important;
+
+}
+
+.medium{
+    height: 30px !important;
+    width: 30px !important;
+
+}
+
+.hard{
+    height: 21px !important;
+    width: 21px !important;
+}
+
 }

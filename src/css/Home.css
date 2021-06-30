@@ -9,3 +9,7 @@
     border: solid black;
     margin-top: 10px;
 }
+
+.bewocBody{
+    margin-top: -50px !important;
+}

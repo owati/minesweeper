@@ -35,7 +35,7 @@ class Buttonarea extends Component {
         }
 
         return (
-            <div className="container h-100 bewocBody">
+            <div className="container h-100">
                 <div className="game-area">
                     {list}
                 </div>

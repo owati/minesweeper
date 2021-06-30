@@ -6,10 +6,10 @@ const Navbar = (props) => {
 
         <nav className="navbar navbar-light bg-secondary">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">Minesweeper</a>
+                <a className="navbar-brand at" href="#">Minesweeper</a>
 
                 <div className="d-flex">
-                    <button className="btn btn-outline-danger" onClick={props.open}>&#9776;</button>
+                    <button className="btn btn-outline but" onClick={props.open}>&#9776;</button>
                 
                 </div>
             </div>

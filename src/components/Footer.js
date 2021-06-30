@@ -13,33 +13,44 @@ function Footer(props) {
         return (
             <footer>
                 <div className="footer-text">
-                    <h5>Owati Web Games &copy;Copyright {new Date().getFullYear()}</h5>
-                    <hr />
-                    <h5>ppp</h5>
+                    <h5>Owati Web Games &copy;{new Date().getFullYear()}</h5>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <div className="d-flex justify-content-between align-items-center social">
+                        <a href="https://github.com/owati/minesweeper">
+                            <img src={github} height="30" width="30" ></img>
+                        </a>
+                        <a>
+                            <img src={facebook} height="30" width="30" ></img>
+                        </a>
+                        <a>
+                            <img src={twitter} height="30" width="30" ></img>
+                        </a>
+                        </div>
+                    </div>
 
                 </div>
 
                 <div className="bottom-nav">
-                    <div className="col">
+                    <div>
                         <a className="grow" href="javascript:void(0)" onClick={props.func.newgame}>
                             <img src={newgame} height="50" width="50" className="grow"></img>
                         </a>
 
                     </div>
-                    <div className="col">
+                    <div>
                         <a className="grow" href="javascript:void(0)">
                             <img src={save} height="50" width="50" className="grow"></img>
                         </a>
 
 
                     </div>
-                    <div className="col">
+                    <div>
                         <a className="grow" href="javascript:void(0)" onClick={props.func.home}>
                             <img src={home} height="50" width="50" className="grow"></img>
                         </a>
 
                     </div>
-                    <div className="col">
+                    <div>
                         <a className="grow" href="javascript:void(0)">
                             <img src={board} height="50" width="50" className="grow"></img>
                         </a>
@@ -60,7 +71,7 @@ function Footer(props) {
  
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="d-flex justify-content-between align-items-center social">
-                        <a>
+                        <a href="https://github.com/owati/minesweeper">
                             <img src={github} height="30" width="30" ></img>
                         </a>
                         <a>

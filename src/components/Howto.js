@@ -54,23 +54,17 @@ function Howto() {
 
             <div className="container h-100 bewocBody">
                 
-                <div className="row h-100 justify-content-center div-wrapper align-items-center home">
+                <div className="d-flex justify-content-around div-wrapper align-items-center home pol2">
                     
-                    <div className="col">
                         <div className="text">
-                            <button className="btn btn-outline-success" onClick={prev}> prev </button>
+                            <button className="btn btn-outline pol grow shadow-5" onClick={prev}> prev </button>
                         </div>
-
-                    </div>
                     <div className="col-9 howto">
-                        <p> {slideMap[slidenum]} </p>
+                        <p> {slidenum + 1 }. {slideMap[slidenum]} </p>
                     </div>
-                    <div className="col">
                         <div className="text">
-                            <button className="btn btn-outline-success" onClick={next}> next </button>
+                            <button className="btn btn-outline pol grow shadow-5" onClick={next}> next </button>
                         </div>
-
-                    </div>
                 </div>
             </div>
 

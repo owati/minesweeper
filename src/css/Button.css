@@ -1,5 +1,6 @@
 .gamebutton{
-    background-color: chartreuse;
+    background-color: #4e5459;
+    border: 1px solid;
     margin: 2px 2px !important;
     font-family: 'Comic sans ms';
 }

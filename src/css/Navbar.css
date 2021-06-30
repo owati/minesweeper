@@ -1,6 +1,15 @@
-a {
+.at {
     color: brown;
-    font-style: italic;
     font-weight: bold;
+}
+
+.but{
+    border-color: black;
+    font-weight: bolder;
+}
+
+.but:hover {
+    background-color: black;
+    color: white;
 }
 

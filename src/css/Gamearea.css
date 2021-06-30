@@ -9,7 +9,34 @@
 }
 
 .timer{
-    border: solid 5px blue;
+    border: solid 5px #4e5459;
     border-radius: 10px;
     height: 70px;
+}
+
+.side-bar{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 160px;
+    left: 50px;
+    height: 70px;
+    width: 70px;
+    overflow-y: hidden;
+    transition: 0.5s;
+
+}
+
+.sideBut{
+    height: 60px !important;
+    background-color: #6c757d;
+    width: 60px;
+    border: solid 4px black;
+    border-radius: 30px;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.butDiv{
+    margin: 5px 0px;
 }

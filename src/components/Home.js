@@ -6,8 +6,8 @@ function Home() {
     return (
         <div>
 
-            <div className="container h-100 bewocBody">
-                <div className="row h-100 justify-content-center div-wrapper align-items-center home">
+            <div className="container bewocBody">
+                <div className="row  justify-content-center div-wrapper align-items-center home">
 
                     <a href="/game" className="btn mybtn button-div col-10 col-md-8 grow"> new game </a>
                     <a href="" className="btn mybtn button-div col-10 col-md-8 grow "> saved games </a>
