@@ -13,7 +13,7 @@ function Footer(props) {
         return (
             <footer>
                 <div className="footer-text">
-                    <h5>Owati Web Games &copy;{new Date().getFullYear()}</h5>
+                    <h5><strong>Owati</strong>  &copy;{new Date().getFullYear()}</h5>
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="d-flex justify-content-between align-items-center social">
                         <a href="https://github.com/owati/minesweeper">
@@ -38,7 +38,7 @@ function Footer(props) {
 
                     </div>
                     <div>
-                        <a className="grow" href="javascript:void(0)">
+                        <a className="grow" href="javascript:void(0)" onClick={props.func.save}>
                             <img src={save} height="50" width="50" className="grow"></img>
                         </a>
 
@@ -67,7 +67,7 @@ function Footer(props) {
         return (
             <footer>
                 <div className="footer-text2">
-                    <h5>Owati Web Games &copy;{new Date().getFullYear()}</h5>
+                    <h5><strong>Owati</strong>  &copy;{new Date().getFullYear()}</h5>
  
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="d-flex justify-content-between align-items-center social">

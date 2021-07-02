@@ -7,7 +7,7 @@ function Sidebar(props) {
             <p className="navTit"> Minesweeper</p>
             <a href="javascript:void(0)" class="closebtn" onClick={props.close}>&times;</a>
             <a href="#">My Account</a>
-            <a href="/">Home</a>
+            <a href="/minesweeper">Home</a>
             <hr/>
             <a href="#">sign up</a>
             <a href="#">login</a>

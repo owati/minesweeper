@@ -20,6 +20,15 @@ const revNumMap = {
     'G': '16'
 
 }
+
+function List_string(list){
+    let mes = ''
+    for(let i of list){
+        mes += `${i}`
+    }
+    return mes
+}
+
 function permutate(list1, list2, list3){
     let returnList = []
     for(let i = 1; i <  list1.length; i++){
@@ -125,3 +134,25 @@ export function zeroButtonArray(id, limit, mineArray){
     return originalArray
 }
 
+
+export function SaveGame(mines, opened, time, level){
+    const xhr = new XMLHttpRequest()
+    xhr.responseType = 'json'
+    xhr.open('POST','http://127.0.0.1:8000/api/savedgames')
+
+    let gameDetail = {
+        'Access-Control-Allow-Origin':true,
+        level: level,
+        mines_array: List_string(mines),
+        opened_array: List_string(opened),
+        time: time
+    }
+
+    console.log(JSON.stringify(gameDetail))
+
+    xhr.onload = () => {
+        console.log(xhr.status)
+    }
+
+    xhr.send(JSON.stringify(gameDetail))
+}

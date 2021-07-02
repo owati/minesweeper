@@ -4,7 +4,7 @@ import Home from './components/Home';
 import Howto from './components/Howto'
 import Gamearea from './components/Gamearea';
 import Sidebar from './components/Sidebar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 
 
@@ -22,14 +22,17 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Router>
+                <Router basename={process.env.PUBLIC_URL}>
                     <Navbar open={this.openNav} />
                     <Sidebar close={this.closeNav} />
+
+
                     <Switch>
-                        <Route path="/" exact component={() => <Home />} />
-                        <Route path="/game" exact component={() => <Gamearea/>} />
-                        <Route path="/how" exact component={() => <Howto/>}/>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/game/" exact component={() => <Gamearea />} />
+                        <Route path="/how/" exact component={Howto} />
                     </Switch>
+
                 </Router>
             </div>
 

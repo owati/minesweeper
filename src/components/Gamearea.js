@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import Levelset from './Levelset';
 import '../css/Gamearea.css';
-import { generateMines, countAround, zeroButtonArray, splitArray, remove } from '../functions/generatemines';
+import { generateMines, countAround, zeroButtonArray, splitArray, remove, SaveGame } from '../functions/generatemines';
 import Buttonarea from './Buttonarea';
 import Footer from './Footer';
 import home from '../assets/home.png';
@@ -153,7 +153,7 @@ class Gamearea extends Component {
             if (this.state.running) {
                 alert('sorry a game is running')
             } else {
-                window.location.replace('/')
+                window.location.replace('/minesweeper/')
             }
         },
         newgame: () => {
@@ -164,6 +164,18 @@ class Gamearea extends Component {
             })
             clearInterval(timerFunc)
             timeCount = 0
+        },
+        save: () => {
+            if(this.state.running){
+                SaveGame(
+                    this.state.minesArray,
+                    this.state.openedButtons,
+                    timeCount,
+                    this.state.level
+                )
+            } else {
+                alert('sorry no game is being played.')
+            }
         }
     }
 
@@ -184,7 +196,7 @@ class Gamearea extends Component {
 
                         <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
                         <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"  onClick={this.bottomNavFunctions.save}></img></button> </div>
                         <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
                         <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
                         
@@ -221,7 +233,7 @@ class Gamearea extends Component {
 
                         <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
                         <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"></img></button> </div>
+                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40" onClick={this.bottomNavFunctions.save}></img></button> </div>
                         <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
                         <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
                         
