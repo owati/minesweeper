@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import Levelset from './Levelset';
 import '../css/Gamearea.css';
-import { generateMines, countAround, zeroButtonArray, splitArray, remove, SaveGame } from '../functions/generatemines';
+import { generateMines, countAround, zeroButtonArray, splitArray, remove, SaveGame, API_URL, string_List } from '../functions/generatemines';
 import Buttonarea from './Buttonarea';
 import Footer from './Footer';
 import home from '../assets/home.png';
@@ -11,8 +11,8 @@ import save from '../assets/save.png';
 
 const LevelMap = {
     easy: [7, 10],
-    medium: [10, 8],
-    hard: [14, 20]
+    medium: [10, 20],
+    hard: [14, 30]
 }
 
 let side_bar_open = false
@@ -44,8 +44,8 @@ function Timer() {
 
 
 class Gamearea extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             level: 'easy',          // determines the game hardness level
             numOfBoxes: 7,          // show the length of the grid to be generated
@@ -54,7 +54,41 @@ class Gamearea extends Component {
             running: false,         // remains true while a game is being played
             openedButtons: [],      // stores the number of index numbers of already opened buttons
         }
+    }
 
+    componentDidMount(){
+        let id
+        try {
+            id =this.props.match.params.id
+        } catch {
+            id = -1
+        }
+        if (id !== -1) {
+            fetch(API_URL + `savedgames/${id}`)
+            .then((response) => response.json())
+            .then((data) => {
+                this.state = {
+                    level: data.level,
+                    numOfBoxes: LevelMap[data.level][0],
+                    numOfError: LevelMap[data.level][1],
+                    minesArray: string_List(data.mines_array),
+                    openedButtons: string_List(data.opened_array),
+                    running: true
+                }
+                this.setState(() => {
+                    const level = data.level
+                    const numOfBoxes = LevelMap[data.level][0]
+                    const numOfError =  LevelMap[data.level][1]
+                    const minesArray = string_List(data.mines_array)
+                    const openedButtons = string_List(data.opened_array)
+                    const running = true
+
+                    return { level, numOfBoxes, numOfError, minesArray, openedButtons, running}
+                })
+                timeCount = data.time
+                console.log(this.state)
+            })  
+        } 
     }
 
     buttonClick = (event) => {  // handles the event when a button is clicked
@@ -137,7 +171,7 @@ class Gamearea extends Component {
     sideButFunc = (event) => {
         let but = event.target
         let side_bar = document.getElementById('side-bar-id')
-        if(side_bar_open){
+        if (side_bar_open) {
             side_bar.style.height = '70px'
             side_bar_open = false
             but.style.backgroundColor = '#6c757d'
@@ -166,13 +200,28 @@ class Gamearea extends Component {
             timeCount = 0
         },
         save: () => {
-            if(this.state.running){
-                SaveGame(
-                    this.state.minesArray,
-                    this.state.openedButtons,
-                    timeCount,
-                    this.state.level
-                )
+            if (this.state.running) {
+                let name = prompt('enter the name of the game', '')
+                if (!name) {
+                    alert('you must enter a name')
+                } else {
+                    SaveGame(
+                        this.state.minesArray,
+                        this.state.openedButtons,
+                        timeCount,
+                        this.state.level,
+                        name
+                    )
+                    this.setState({  // reset all original state
+                        running: false,
+                        openedButtons: [],
+                        minesArray: [],
+                    })
+                    clearInterval(timerFunc)
+                    timeCount = 0
+                    alert('hurray your game has been saved.')
+                }
+
             } else {
                 alert('sorry no game is being played.')
             }
@@ -180,85 +229,44 @@ class Gamearea extends Component {
     }
 
     render() {
-        if (this.state.running) {
-            return (
-                <div>
-                    <div className="d-flex justify-content-between align-items-center status">
-                        <Levelset change={this.setLevel} />
-                        <div><h4>{this.state.openedButtons.length}</h4></div>
-                        <div className="timer d-flex justify-content-between align-items-center"><Timer /></div>
-                    </div>
-
- 
-                    <div className="side-bar" id='side-bar-id'>
-    
-
-
-                        <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
-                        <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40"  onClick={this.bottomNavFunctions.save}></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
-                        
-                    </div>
-
-
-                    <div>
-                        <Buttonarea
-                            limit={this.state.numOfBoxes}
-                            level={this.state.level}
-                            butClick={this.buttonClick}
-                            opened={this.state.openedButtons}
-                            mines={this.state.minesArray}
-                            running={this.state.running}
-                        />
-
-                    </div>
-                    <Footer game={true} func={this.bottomNavFunctions} />
+        return (
+            <div>
+                <div className="d-flex justify-content-between align-items-center status">
+                    <Levelset change={this.setLevel} value={this.state.level}/>
+                    <div><h4>{this.state.openedButtons.length} / {this.state.numOfBoxes ** 2 - this.state.numOfError}</h4></div>
+                    <div className="timer d-flex justify-content-between align-items-center">{this.state.running ? <Timer /> : <h1>00:00</h1>}</div>
                 </div>
-            )
-        } else {
-            return (
-                <div>
-                    <div className="d-flex justify-content-between align-items-center status">
-                        <Levelset change={this.setLevel} />
-                        <div className="timer d-flex justify-content-between align-items-center"><h1>00:00</h1></div>
-
-                    </div>
-
- 
-                    <div className="side-bar" id='side-bar-id'>
-    
 
 
-                        <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
-                        <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40" onClick={this.bottomNavFunctions.save}></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
-                        <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div> 
-                        
-                    </div>
+                <div className="side-bar" id='side-bar-id'>
 
 
-                    <div>
-                        <Buttonarea
-                            limit={this.state.numOfBoxes}
-                            level={this.state.level}
-                            butClick={this.buttonClick}
-                            opened={this.state.openedButtons}
-                            mines={this.state.minesArray}
-                            running={this.state.running}
-                        />
 
-                    </div>
-                    <Footer game={true} func={this.bottomNavFunctions} />
+                    <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
+                    <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
+                    <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40" onClick={this.bottomNavFunctions.save}></img></button> </div>
+                    <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
+                    <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div>
+
                 </div>
-            )
-        }
 
 
+                <div>
+                    <Buttonarea
+                        limit={this.state.numOfBoxes}
+                        level={this.state.level}
+                        butClick={this.buttonClick}
+                        opened={this.state.openedButtons}
+                        mines={this.state.minesArray}
+                        running={this.state.running}
+                    />
+
+                </div>
+                <Footer game={true} func={this.bottomNavFunctions} />
+            </div>
+        )
     }
 
-}
 
+}
 export default Gamearea;

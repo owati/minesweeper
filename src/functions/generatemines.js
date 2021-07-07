@@ -21,6 +21,8 @@ const revNumMap = {
 
 }
 
+export const API_URL = 'http://127.0.0.1:8000/api/'
+
 function List_string(list){
     let mes = ''
     for(let i of list){
@@ -135,24 +137,47 @@ export function zeroButtonArray(id, limit, mineArray){
 }
 
 
-export function SaveGame(mines, opened, time, level){
-    const xhr = new XMLHttpRequest()
-    xhr.responseType = 'json'
-    xhr.open('POST','http://127.0.0.1:8000/api/savedgames')
+export function SaveGame(mines, opened, time, level, name){
+    // const xhr = new XMLHttpRequest()
+    // xhr.responseType = 'json'
+    // xhr.open('POST','http://127.0.0.1:8000/api/savedgames')
 
     let gameDetail = {
-        'Access-Control-Allow-Origin':true,
+        user:1,
         level: level,
         mines_array: List_string(mines),
         opened_array: List_string(opened),
-        time: time
+        time: time,
+        time_saved: new Date().getTime(),
+        name: name
+    }
+    console.log(gameDetail)
+
+    // xhr.onload = () => {
+    //     console.log(xhr.status, xhr.response)
+    // }
+
+    // xhr.send(JSON.stringify(gameDetail))
+
+    fetch(API_URL + 'savedgames',{
+        method:'POST',
+        body:JSON.stringify(gameDetail),
+        headers:{
+            'Content-type':'application/json;charset=UTF-8'
+        }
+
+    })
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+}
+
+
+
+export function string_List(string){
+    let answer = []
+    for(let i = 0; i < string.length; i+=2){
+        answer.push(string[i] + string[i+1])
     }
 
-    console.log(JSON.stringify(gameDetail))
-
-    xhr.onload = () => {
-        console.log(xhr.status)
-    }
-
-    xhr.send(JSON.stringify(gameDetail))
+    return answer
 }

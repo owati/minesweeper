@@ -1,0 +1,100 @@
+.headersave{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    margin-top: 10px;
+    font-family: 'Comic sans ms';
+}
+
+.saved{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 10px;
+    height: 300px;
+    width: calc(100% - 100px);
+    margin-top: 50px;
+    padding: 20px 10px;
+    overflow-y: scroll;
+
+
+}
+
+.savedbut{
+    width: calc(100% - 150px);
+    height: 100px;
+    background-color: transparent;
+    border: black 3px solid;
+    border-radius: 10px;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+    border: black 2px solid;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #6c757d;
+    border: black 2px solid;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-button{
+    background-color: transparent;
+    border: 2px solid black;
+
+}
+
+.modal{
+    position:fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 100%;
+    background-color: #6c757d68;
+}
+
+.modalClass{
+    border: solid 5px black;
+    border-radius: 10px;
+    height: 200px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: cadetblue;
+
+}
+
+.butane{
+    width: 100px;
+    height: 60px;
+    border: 4px solid black;
+    border-radius: 10px;
+    background-color: #6c757d;
+    margin: 10px 10px;
+    font-weight: bolder;
+}
+
+.modal-head{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 10px 2px;
+    font-weight: bold;
+}
+
+.error{
+    text-align: center;
+    padding-top: 40px;
+}

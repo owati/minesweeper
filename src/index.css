@@ -39,17 +39,25 @@ code {
     height: 45px !important;
     width: 45px !important;
 
-}
+  }
 
-.medium{
-    height: 30px !important;
-    width: 30px !important;
+  .medium{
+      height: 30px !important;
+      width: 30px !important;
 
-}
+  }
 
-.hard{
-    height: 21px !important;
-    width: 21px !important;
-}
+  .hard{
+      height: 21px !important;
+      width: 21px !important;
+  }
+
+  .savedbut{
+    width: 100% !important;
+  }
+
+  .saved{
+    height: 400px !important;
+  }
 
 }
