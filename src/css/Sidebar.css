@@ -34,10 +34,10 @@
 
   .sidenav .navTit{
     position: absolute;
-    top: 18px;
+    top: 20px;
     left: 30px;
-    font-size: 25px;
-    margin-left: 2px;
+    font-size: 20px;
+    margin-left: -3px;
     color: #f1f1f1;
   }
   

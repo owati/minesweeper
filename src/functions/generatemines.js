@@ -138,9 +138,6 @@ export function zeroButtonArray(id, limit, mineArray){
 
 
 export function SaveGame(mines, opened, time, level, name){
-    // const xhr = new XMLHttpRequest()
-    // xhr.responseType = 'json'
-    // xhr.open('POST','http://127.0.0.1:8000/api/savedgames')
 
     let gameDetail = {
         user:1,
@@ -153,11 +150,6 @@ export function SaveGame(mines, opened, time, level, name){
     }
     console.log(gameDetail)
 
-    // xhr.onload = () => {
-    //     console.log(xhr.status, xhr.response)
-    // }
-
-    // xhr.send(JSON.stringify(gameDetail))
 
     fetch(API_URL + 'savedgames',{
         method:'POST',
@@ -180,4 +172,25 @@ export function string_List(string){
     }
 
     return answer
+}
+
+export function PlayedGame(level, time){
+    console.log('penis')
+    let game = {
+        user: 1,
+        level: level,
+        time_score: time
+    }
+
+    fetch(API_URL + 'playedgames',
+    {
+        method: 'POST',
+        body: JSON.stringify(game),
+        headers:{
+            'Content-type': 'application/json;charset-UTF-8'
+        }
+    }
+    )
+    .then((response) => response.json())
+    .then((data) => console.log(data))
 }

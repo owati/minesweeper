@@ -1,0 +1,50 @@
+.flop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid black;
+    border-radius: 10px;
+    width: 350px;
+    height: 350px;
+    padding: 0px 10px;
+    
+}
+
+
+input{
+    height: 50px;
+    width: 100%;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: transparent;
+    margin-top: 12px !important;
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+.login-but{
+    background-color: #6c757d;
+    color: black;
+    height: 50px;
+    width: 80px;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+::placeholder{
+    color: rgba(0, 0, 0, 0.503);
+    font-weight: bold;
+}

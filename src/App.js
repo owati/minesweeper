@@ -6,6 +6,7 @@ import Gamearea from './components/Gamearea';
 import Sidebar from './components/Sidebar';
 import Savedgames from './components/Savedgames';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import Login from './components/Login';
 
 
 
@@ -15,7 +16,9 @@ class App extends Component {
         super()
         this.state = {
             login: false,
-            user_id: -1
+            user:{
+                id:-1,
+            }
         }
     }
 
@@ -27,18 +30,25 @@ class App extends Component {
         document.getElementById("mySidenav").style.width = "0";
     }
 
+    loginUser = (data) => {
+        this.setState({
+            user: data
+        })
+    }
+
     render() {
         return (
             <div>
                 <Router basename={process.env.PUBLIC_URL}>
                     <Navbar open={this.openNav} />
-                    <Sidebar close={this.closeNav} />
+                    <Sidebar close={this.closeNav} name={this.state.user.id === -1 ? 'Guest' : this.state.user.nick_name}/>
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/game/" exact component={() => <Gamearea />} />
                         <Route path='/game/:id/' exact component = {(props) => <Gamearea {...props}/> }/>
                         <Route path="/how/" exact component={Howto} />
                         <Route path='/saved/' exact component={Savedgames}/>
+                        <Route path='/login/' exact component={() => <Login func={this.loginUser}/>}/>
 
                     </Switch>
 

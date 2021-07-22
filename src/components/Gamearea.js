@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import Levelset from './Levelset';
 import '../css/Gamearea.css';
-import { generateMines, countAround, zeroButtonArray, splitArray, remove, SaveGame, API_URL, string_List } from '../functions/generatemines';
+import { generateMines, countAround, zeroButtonArray, splitArray, remove, SaveGame, API_URL, string_List, PlayedGame } from '../functions/generatemines';
 import Buttonarea from './Buttonarea';
 import Footer from './Footer';
 import home from '../assets/home.png';
@@ -123,6 +123,7 @@ class Gamearea extends Component {
                     })
                 } else {    // *if yes, declare the person a winner and reset all date ***********************************
                     alert(`you win !!  after ${timeCount} seconds`)
+                    PlayedGame(this.state.level, timeCount)
                     this.setState({  // reset all original state
                         running: false,
                         openedButtons: [],
