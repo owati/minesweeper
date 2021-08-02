@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import Savedgames from './components/Savedgames';
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 
@@ -40,14 +41,15 @@ class App extends Component {
         return (
             <div>
                 <Router basename={process.env.PUBLIC_URL}>
-                    <Navbar open={this.openNav} />
-                    <Sidebar close={this.closeNav} name={this.state.user.id === -1 ? 'Guest' : this.state.user.nick_name}/>
+                    <Navbar open={this.openNav} user={this.state.user}/>
+                    <Sidebar close={this.closeNav} user={this.state.user}/>
                     <Switch>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/game/" exact component={() => <Gamearea />} />
-                        <Route path='/game/:id/' exact component = {(props) => <Gamearea {...props}/> }/>
+                        <Route path="/" exact component={() => <Home user={this.state.user} />}  />
+                        <Route path="/game/" exact component={() => <Gamearea user={this.state.user} />} />
+                        <Route path='/game/:id/' exact component = {(props) => <Gamearea {...props} user={this.state.user}/> }/>
                         <Route path="/how/" exact component={Howto} />
-                        <Route path='/saved/' exact component={Savedgames}/>
+                        <Route path='/saved/' exact component={() => <Savedgames user={this.state.user}/>}/>
+                        <Route path='/signup/' exact component={Signup}/>
                         <Route path='/login/' exact component={() => <Login func={this.loginUser}/>}/>
 
                     </Switch>

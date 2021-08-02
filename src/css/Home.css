@@ -13,3 +13,11 @@
 .bewocBody{
     margin-top: -50px !important;
 }
+
+.home-header{
+    position:fixed;
+    top: 80px;
+    left:0px;
+    text-align: center;
+    width: 100%;
+}

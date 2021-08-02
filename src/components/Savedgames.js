@@ -55,11 +55,11 @@ function OptionBox(props) {
 }
 
 
-function Savedgames() {
+function Savedgames(props) {
     const [savedList, savedListChange] = useState([])
 
     useEffect(() => {
-        fetch(API_URL + 'savedgames', {
+        fetch(API_URL + 'savedgames/' + `${props.user.id}`, {
             method: 'GET'
         })
             .then((response) => response.json())
@@ -91,7 +91,7 @@ function Savedgames() {
         <div>
             <OptionBox name={confirm_name} />
             <div className="headersave">
-                <div className="d-flex justify-content-center"><h1> welcome Anonymous</h1></div>
+                <div className="d-flex justify-content-center"><h1> welcome {props.user.nick_name ? props.user.nick_name : 'Guest'}</h1></div>
                 <div className="d-flex justify-content-center"><h4> your saved games </h4></div>
             </div>
 

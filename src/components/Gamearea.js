@@ -64,7 +64,7 @@ class Gamearea extends Component {
             id = -1
         }
         if (id !== -1) {
-            fetch(API_URL + `savedgames/${id}`)
+            fetch(API_URL + `savedgames/${this.props.user.id}/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 this.state = {
@@ -188,7 +188,7 @@ class Gamearea extends Component {
             if (this.state.running) {
                 alert('sorry a game is running')
             } else {
-                window.location.replace('/minesweeper/')
+                window.location.replace('/minesweeper/#/')
             }
         },
         newgame: () => {
@@ -201,35 +201,40 @@ class Gamearea extends Component {
             timeCount = 0
         },
         save: () => {
-            if (this.state.running) {
-                let name = prompt('enter the name of the game', '')
-                if (!name) {
-                    alert('you must enter a name')
+            if (this.props.user.name) {
+                if(this.state.running){
+                    let name = prompt('enter the name of the game', '')
+                    if (!name) {
+                        alert('you must enter a name')
+                    } else {
+                        SaveGame(
+                            this.state.minesArray,
+                            this.state.openedButtons,
+                            timeCount,
+                            this.state.level,
+                            name
+                        )
+                        this.setState({  // reset all original state
+                            running: false,
+                            openedButtons: [],
+                            minesArray: [],
+                        })
+                        clearInterval(timerFunc)
+                        timeCount = 0
+                        alert('hurray your game has been saved.')
+                    }
                 } else {
-                    SaveGame(
-                        this.state.minesArray,
-                        this.state.openedButtons,
-                        timeCount,
-                        this.state.level,
-                        name
-                    )
-                    this.setState({  // reset all original state
-                        running: false,
-                        openedButtons: [],
-                        minesArray: [],
-                    })
-                    clearInterval(timerFunc)
-                    timeCount = 0
-                    alert('hurray your game has been saved.')
+                    alert('sorry no game is being played.')
                 }
 
             } else {
-                alert('sorry no game is being played.')
+                alert("you can't save until you login.")
             }
         }
     }
 
     render() {
+
         return (
             <div>
                 <div className="d-flex justify-content-between align-items-center status">
@@ -245,7 +250,7 @@ class Gamearea extends Component {
 
                     <div className="butDiv"> <button className="sideBut grow shadow-5" onClick={this.sideButFunc}>&#9776;</button> </div>
                     <div className="butDiv"> <button className="sideBut" onClick={this.bottomNavFunctions.newgame}><img src={newgame} height="40" width="40"></img></button> </div>
-                    <div className="butDiv"> <button className="sideBut"><img src={save} height="40" width="40" onClick={this.bottomNavFunctions.save}></img></button> </div>
+                    <div className="butDiv"> <button className={"sideBut"}><img src={save} height="40" width="40" onClick={this.bottomNavFunctions.save}></img></button> </div>
                     <div className="butDiv"> <button className="sideBut"><img src={home} height="40" width="40" onClick={this.bottomNavFunctions.home}></img></button> </div>
                     <div className="butDiv"> <button className="sideBut"><img src={board} height="40" width="40"></img></button> </div>
 
@@ -263,7 +268,7 @@ class Gamearea extends Component {
                     />
 
                 </div>
-                <Footer game={true} func={this.bottomNavFunctions} />
+                <Footer game={true} func={this.bottomNavFunctions} user={this.props.user.name}/>
             </div>
         )
     }

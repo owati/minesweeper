@@ -1,0 +1,52 @@
+.reg-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid black;
+    border-radius: 10px;
+    width: 450px;
+    height: 450px;
+    padding: 0px 10px; 
+}
+
+.flop2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 550px;
+}
+
+.flex-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    
+}
+
+
+.flex-row1{
+    width: 100%;
+    padding: 5px 5px;
+}
+
+.flex-row input{
+    width: 90%;;
+}
+
+.flex-row select{
+    width: 46%;
+    height: 40px;
+    border: solid 3px black;
+}
+
+.input-div{
+    padding: 0px;
+    text-align: center;
+}
+.errors{
+    color: #9c3d3d;
+    padding: 0px;
+    font-weight: bold;
+}
