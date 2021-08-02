@@ -12,7 +12,7 @@ function Sidebar(props) {
             <a href="#">My Account</a>
             <a href="/minesweeper/#/">Home</a>
             <hr/>
-            <a href="/minsweeper/#/signup">sign up</a>
+            <a href="/minesweeper/#/signup">sign up</a>
             <a href="/minesweeper/#/login">login</a>
         </div>
 

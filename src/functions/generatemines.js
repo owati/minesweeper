@@ -21,7 +21,7 @@ const revNumMap = {
 
 }
 
-export const API_URL = 'https://minesweepee.herokuapp.com/'
+export const API_URL = 'https://minesweepee.herokuapp.com/api/'
 
 function List_string(list){
     let mes = ''
