@@ -81,7 +81,7 @@ function Signup() {
         <div>
             <div className="flop2">
                 <div className='reg-form'>
-                    <div className="header"><h3>Login you account </h3></div>
+                    <div className="header"><h3>create account </h3></div>
 
                     <div className="flex-row1">
                         <div className="input-div">
@@ -104,11 +104,10 @@ function Signup() {
 
 
                     <button className="login-but grow shadow-5" onClick={register}> Register </button>
-                    <div><h5>already have an account ? click here</h5></div>
+                    <div><h5>already have an account ? <a href="/minesweeper/#/login">click here</a></h5></div>
                 </div>
 
             </div>
-            <Footer />
         </div>
     )
 }

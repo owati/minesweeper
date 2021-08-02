@@ -8,10 +8,13 @@ import github from '../assets/github.png';
 import facebook from '../assets/facebook.png';
 import twitter from '../assets/twitter.png';
 
+
+
+
 function Footer(props) {
     if (props.game) {
         return (
-            <footer>
+            <footer id="foot">
                 <div className="footer-text">
                     <h5><strong>Owati</strong>  &copy;{new Date().getFullYear()}</h5>
                     <div className="d-flex justify-content-center align-items-center">
@@ -65,7 +68,7 @@ function Footer(props) {
         )
     } else {
         return (
-            <footer>
+            <footer id="foot">
                 <div className="footer-text2">
                     <h5><strong>Owati</strong>  &copy;{new Date().getFullYear()}</h5>
  

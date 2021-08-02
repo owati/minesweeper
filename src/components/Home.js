@@ -28,6 +28,7 @@ function Home(props) {
             </div>
 
             <Footer/>
+
         </div>
     )
 

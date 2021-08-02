@@ -59,11 +59,10 @@ function Login(props) {
                 
 
                     <button className="login-but grow shadow-5" onClick={loginFunc}> Login </button>
-                    <div><h5>dont have an account ? click here</h5></div>
+                    <div><h5>dont have an account ? <a href="/minesweeper/#/signup">click here</a></h5></div>
                 </div>
 
             </div>
-            <Footer />
         </div>
     )
 

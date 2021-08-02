@@ -67,8 +67,8 @@ function Howto() {
                         </div>
                 </div>
             </div>
-
             <Footer/>
+
         </div>
 
     )

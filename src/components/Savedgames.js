@@ -28,13 +28,13 @@ function open_game() {
 }
 
 function delete_game() {
-    fetch(API_URL + 'savedgames/' + confirm_id, {
+    fetch(API_URL + 'savedgames/' + props.user.id + confirm_id, {
         method: 'DELETE'
     })
         .then((response) => response.json())
         .then((data) => console.log(data))
 
-    window.location.reload()
+    window.location.replace('/minesweeper/#/saved')
 }
 
 function OptionBox(props) {
@@ -103,8 +103,8 @@ function Savedgames(props) {
                         </div>
                     </div>}
 
-            <Footer />
 
+                    <Footer/>
         </div>
     )
 }

@@ -58,6 +58,7 @@ class Gamearea extends Component {
 
     componentDidMount(){
         let id
+        
         try {
             id =this.props.match.params.id
         } catch {
