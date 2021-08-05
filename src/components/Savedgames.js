@@ -5,6 +5,7 @@ import { API_URL } from '../functions/generatemines'
 
 var confirm_id = 0
 var confirm_name = ''
+var user_id = ''
 
 
 window.onclick = (event) => {
@@ -28,7 +29,7 @@ function open_game() {
 }
 
 function delete_game() {
-    fetch(API_URL + 'savedgames/' + props.user.id + confirm_id, {
+    fetch(API_URL + 'savedgames/' + user_id + '/' + confirm_id, {
         method: 'DELETE'
     })
         .then((response) => response.json())
@@ -57,6 +58,8 @@ function OptionBox(props) {
 
 function Savedgames(props) {
     const [savedList, savedListChange] = useState([])
+    user_id = props.user.id
+
 
     useEffect(() => {
         fetch(API_URL + 'savedgames/' + `${props.user.id}`, {
@@ -104,7 +107,7 @@ function Savedgames(props) {
                     </div>}
 
 
-                    <Footer/>
+             <Footer/>
         </div>
     )
 }
